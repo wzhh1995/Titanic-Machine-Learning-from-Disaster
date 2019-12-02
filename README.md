@@ -222,10 +222,12 @@ show the accuracy of prediction to the training data and testing data
     print("Out-of-sample percent fatalities correctly predicted:", report[37:41])
 ```
 
-This is the accuracy of prediction to training data
+The accuracy of prediction to training data is 96.94%
+
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/1_train.PNG)
 
-This is the accuracy of prediction to testing data
+The accuracy of prediction to training data is 73.54%
+
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/1_test.PNG)
 
 We can find out that the accuracy of prediction to training data is very high and to the testing data is low. This is because of the tree overfitting. I decide use limit the max size of the tree to fix this.
@@ -252,4 +254,49 @@ First, draw a graph to analysis the relationship between the tree size and the M
 ```
 
 
-![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/1_train.PNG)
+![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_misclassificated.png)
+
+Then I can find the best size.
+
+![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/best%20size.PNG)
+
+Use the best size to creat a new decision tree and generate the piction of the tree
+
+```Python
+    best_k = kmap[(max(cv_scores))]
+    print("Best tree size is", best_k)
+    best_dec = DecisionTreeClassifier(max_depth=best_k)
+    best_dec.fit(x_train, y_train)
+    export_graphviz(best_dec, out_file="best_tree.dot", feature_names=dict.get_feature_names())
+```
+
+![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/best_tree.png)
+
+At last show the accuracy of prediction to the training data and testing data.
+
+```Python
+    print('\n\noptimal tree:\n\n')
+    print("Training Data Score:", best_dec.score(x_train, y_train))
+    report = classification_report(y_train, best_dec.predict(x_train))
+    print(report)
+    report = report.replace(" ", "")
+    print("In-sample percent survivors correctly predicted:", report[54:58])
+    print("In-sample percent fatalities correctly predicted:", report[37:41])
+    print('\n\n')
+    print("Testing Data Score:", best_dec.score(x_test, y_test))
+    report = classification_report(y_test, best_dec.predict(x_test))
+    print(report)
+    report = report.replace(" ", "")
+    print("Out-of-sample percent survivors correctly predicted:", report[54:58])
+    print("Out-of-sample percent fatalities correctly predicted:", report[37:41])
+```
+
+The accuracy of prediction to training data is 81.77%
+
+![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/besttreeTrain.PNG)
+
+The accuracy of prediction to testing data is 81.42%
+
+![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/bestTreeTest.PNG)
+
+At last, I got 81% accuracy of prediction better than the first tree.
