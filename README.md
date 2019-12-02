@@ -38,7 +38,7 @@ print(data.info())
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/dataView.PNG)
 
-### Analyze the relationship between each feature and survived(This process is at "analysisData.py")
+### Analyze the relationship between each feature and survived(The code of this process is "analysisData.py")
 
 Use graphs to analyze the relationship between individual features and survival, so as to find out which parameters should be entered when building a machine learning model using a decision tree. According to the analysis above, I decided to analyze 7 features.
 
@@ -142,7 +142,7 @@ def embarked_survived():
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_embarked.png)
 
-## Create a decision tree to predict
+## Create a decision tree to predict(The code of this process is "Titanic.py")
 
 After the analysis of data, the next step is going to create a machine learning model. In this case, I will use the decision tree to predict the survived.
 
