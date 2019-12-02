@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-data = pd.read_csv("D:\PycharmProjects\Titanic\Titanic.csv",index_col=0)
+data = pd.read_csv("Titanic.csv",index_col=0)
 
 # show the information of data
 print(data.info())
