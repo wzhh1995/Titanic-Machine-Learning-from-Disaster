@@ -92,8 +92,8 @@ The accuracy of prediction to testing data is 81.42%
 ### Conclusion
 First, using the overview of data can find that data of some features are not complete. Chosing age, sex, pclass, sibsp, parch, fare, cabin and embarked to analyze. Figuring out which feature influent the survival rates more. Then use these features (age, sex, fare, sibsp and parch) to create a machine-learning model, a decision tree. Prevent overfitting by limiting the maximum size. Eventually reached an 81% accuracy rate to predict whether passengers survived.
 
-##Todo
+## Todo
 Find more methods such as limiting the maximum number of leaf nodes or using other machine learning models to increase the accuracy of predictions.
 
-##Author
+## Author
 Zhihao Wang
