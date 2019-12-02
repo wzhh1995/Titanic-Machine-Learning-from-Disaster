@@ -1,15 +1,10 @@
 # Titanic-Machine-Learning-from-Disaster
 ## Introduce:
 The this project is using machine learning to create a model that predicts which passengers survived the Titanic shipwreck.
-The sinking of the Titanic is one of the most infamous shipwrecks in history.
-
-On April 15, 1912, during her maiden voyage, the widely considered “unsinkable” RMS Titanic sank after colliding with an iceberg. Unfortunately, there weren’t enough lifeboats for everyone onboard, resulting in the death of 1502 out of 2224 passengers and crew.
-
-While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
-
+## Purpose
 In this project, I will build a predictive model that answers the question: “what sorts of people were more likely to survive?” using passenger data (ie name, age, gender, socio-economic class, etc).
-## Analyze The Data (The code of this process is "analysisData.py")
-The data of Titanic is in "Titanic.csv". The classifications in the data are "pclass", "survived", "name", "sex", "age", "sibsp", "parch"	"ticket", "fare", "cabin", "embarked", "boat", "body" and "home.dest".
+## Architecture
+#### Titanic.csv: This is the data of Titanic event. 
 
 pclass => Ticket class<br>
 survived => Survival,0 = No, 1 = Yes<br>
@@ -24,123 +19,49 @@ cabin => Cabin number<br>
 embarked => Port of Embarkation; 	C = Cherbourg, Q = Queenstown, S = Southampton<br>
 boat => Whether to board a lifeboat<br>
 
-Looking at the data set information, you can see that there are missing values for age, fare, cabin, embarked, boat, body and home.dest
+#### Titanic.py:
+Module: sklearn, pandas and matplotlib.pyplot.<br>
+Function: The code is used to creat a machine learning model to predict who will suvive. 
 
-```Python
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
-data = pd.read_csv("D:\PycharmProjects\Titanic\Titanic.csv",index_col=0)
+#### analysisData.py
+Module: seaborn, pandas and matplotlib.pyplot.
+Function: Analyzing the relationship between to different features and survived. Find out which feature has a big impact on survival.
 
-# show the information of data
-print(data.info())
-```
+#### Pictures
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/dataView.PNG)
 
-### Analyze the relationship between each feature and survived
+Overview of the overall data
 
-Use graphs to analyze the relationship between individual features and survival, so as to find out which parameters should be entered when building a machine learning model using a decision tree. According to the analysis above, I decided to analyze 7 features.
-
-#### 1.AGE
-
-Using data for observation and analysis, you can see that the last surviving age will be lower overall, but the characteristics are not obvious enough.
-
-```Python
-def age_survived():
-    sns.boxplot(y=data["age"],x=data["survived"])
-    plt.show()
-```
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_age.png)
 
+The relationship between age and survived
 
-#### 2.Sex
 
-Lady first. <br>
-We can find that women account for a larger proportion of people rescued in the graph.
-
-```Python
-def gender_survived():
-    Survived_m = data.survived[data.sex == 'male'].value_counts()
-    Survived_f = data.survived[data.sex == 'female'].value_counts()
-    df=pd.DataFrame({'male':Survived_m, 'female':Survived_f})
-    df.plot(kind='bar', stacked=True)
-    plt.xlabel("survived")
-    plt.ylabel("number")
-    plt.show()
-```
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_gender.png)
 
-#### 3.Pclass
+The relationship between sex and survived
 
-Chance to be rescued with cabin 1st is greater.
-
-```Python
-def pclass_survived():
-    sns.barplot(x=data["pclass"],y=data["survived"])
-    plt.show()
-```
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_pclass.png)
 
-### 4.FamilySize
-
-Is there a high or low chance of being rescued by a large number of families when disaster strikes?
-
-Combine siblings and parents to get the total number of families.
-
-It can be seen that the number of families is more likely to be rescued between 2-4 people, single people lack help, and more families need to take care of more families.
-
-```Python
-def familySize_survived():
-    data["fsize"] = data["sibsp"] + data["parch"] + 1
-    sns.barplot(x = data["fsize"],y = data["survived"])
-    plt.show()
-```
+The relationship between pclass and survived
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_familySize.png)
 
-#### 5.Fare
-
-The chance of being rescued with high fares is relatively high, but it is not obvious.
-
-```Python
-def fare_survived():
-    sns.boxplot(y=data["fare"],x=data["survived"])
-    plt.show()
-```
+The relationship between sibsp, parch and survived
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_fare.png)
 
-#### 6.Carbin
-
-The cabin number represents the position on the ship. There may be a certain correlation between the probability of different cabin positions running to the rescue ship.
-
-The missing cabin may be no cabin, and replaced with X.
-
-With cabins overall there is a higher chance of being rescued than without cabins.
-
-```Python
-def cabin_survived():
-    data["cabin"] = pd.DataFrame([i[0] if not pd.isnull(i) else "X" for i in data["cabin"]])
-    data.cabin.unique()
-    sns.barplot(x=data["cabin"], y=data["survived"])
-    plt.show()
-```
+The relationship between fare and survived
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_cabin.png)
 
-#### 7.Embarked
-
-It can be seen from the figure that the rescue chances between different boarding ports are not much different. After boarding, guests will basically go to their own cabins. It is speculated that different boarding ports will be divided into cabins or ticket types, but the Whether it was rescued has little effect.
-
-```Python
-def embarked_survived():
-    sns.barplot(x=data["embarked"], y=data["survived"])
-    plt.show()
-```
+The relationship between cabin and survived
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/Figure_embarked.png)
+
+The relationship between embarked and survived
 
 ## Create a decision tree to predict(The code of this process is "Titanic.py")
 
