@@ -90,7 +90,7 @@ The accuracy of prediction to training data is 81.77%(The tree after limit the m
 The accuracy of prediction to testing data is 81.42%(The tree after limit the max size)
 
 ### Conclusion
-First, using the overview of data can find that data of some features are not complete. Chosing age, sex, pclass, sibsp, parch, fare, cabin and embarked to analyze. Figuring out which feature influent the survival rates more. Then use these features (age, sex, fare, sibsp and parch) to create a machine-learning model, a decision tree. Prevent overfitting by limiting the maximum size. Eventually reached an 81% accuracy rate to predict whether passengers survived.
+First, using the overview of data can find that data of some features are not complete. Chosing age, sex, pclass, sibsp, parch, fare, cabin and embarked to analyze. Figuring out which feature influent the survival rates more. Then use these features (age, sex, fare, sibsp and parch) to create a machine-learning model, a decision tree. Prevent overfitting by limiting the maximum size(the best size is 3). Eventually reached an 81% accuracy rate to predict whether passengers survived.
 
 ## Todo
 Find more methods such as limiting the maximum number of leaf nodes or using other machine learning models to increase the accuracy of predictions.
