@@ -24,7 +24,7 @@ Module: sklearn, pandas and matplotlib.pyplot.<br>
 Function: The code is used to creat a machine learning model to predict who will suvive. 
 
 ### analysisData.py
-Module: seaborn, pandas and matplotlib.pyplot.
+Module: seaborn, pandas and matplotlib.pyplot.<br>
 Function: Analyzing the relationship between to different features and survived. Find out which feature has a big impact on survival.
 
 ### Pictures
