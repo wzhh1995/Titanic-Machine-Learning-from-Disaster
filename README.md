@@ -8,7 +8,7 @@ On April 15, 1912, during her maiden voyage, the widely considered “unsinkable
 While there was some element of luck involved in surviving, it seems some groups of people were more likely to survive than others.
 
 In this project, I will build a predictive model that answers the question: “what sorts of people were more likely to survive?” using passenger data (ie name, age, gender, socio-economic class, etc).
-## Analyze The Data
+## Analyze The Data (The code of this process is "analysisData.py")
 The data of Titanic is in "Titanic.csv". The classifications in the data are "pclass", "survived", "name", "sex", "age", "sibsp", "parch"	"ticket", "fare", "cabin", "embarked", "boat", "body" and "home.dest".
 
 pclass => Ticket class<br>
@@ -38,7 +38,7 @@ print(data.info())
 
 ![](https://github.com/wzhh1995/Titanic-Machine-Learning-from-Disaster/blob/master/pictures/dataView.PNG)
 
-### Analyze the relationship between each feature and survived(The code of this process is "analysisData.py")
+### Analyze the relationship between each feature and survived
 
 Use graphs to analyze the relationship between individual features and survival, so as to find out which parameters should be entered when building a machine learning model using a decision tree. According to the analysis above, I decided to analyze 7 features.
 
